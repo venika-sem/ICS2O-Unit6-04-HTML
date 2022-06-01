@@ -1,5 +1,5 @@
 /* Created by: Venika Sem
- * Created on: Apr 2022
+ * Created on: May 2022
  * This file contains the JS functions for index.html 
 */
 
@@ -9,21 +9,25 @@
  * Check servie worker.
  */
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/ICS2O-Unit6-01-PWA/sw.js", {
-    scope: "/ICS2O-Unit6-01-PWA/",
+  navigator.serviceWorker.register("/ICS2O-Unit6-04-HTML/sw.js", {
+    scope: "/ICS2O-Unit6-04-HTML/",
   })
 }
 
-/**
- * This function converts the temperature from fahrenheit to celsius.
- */
-function convert() {
-  // input
-  const fahrenheitTemperature = parseFloat(document.getElementById('fahrenheit-temperature').value)
+window.onload = function() {
+  // this calculates volume of a sphere
 
-   // process
-  const temperature = (fahrenheitTemperature - 32) * 5 / 9
+  const params = new URLSearchParams(document.location.search)
+
+  // input
+  const radius = params.get('r')
+  console.log(radius)
+
+  // process
+  const volume = (4/3)* Math.PI * Math.pow(radius, 3)
+  const dimension = "<ul>\n<li>radius = " + radius + "</li>"
 
   // output
-  document.getElementById('temperature').innerHTML = '<p>The temperature in Celsius is: ' + temperature.toFixed(2) + ' °C</p>'
+  document.getElementById('dimension').innerHTML = dimension
+  document.getElementById('volume').innerHTML = 'Volume is: ' + volume + ' mm³'
 }
